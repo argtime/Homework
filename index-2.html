@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Slides Fullscreen Embed (Links Only)</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* The overlay blocks all mouse interactions except on links */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Allow pointer events (e.g., clicks) to pass through */
+      z-index: 10;
+    }
+    .overlay a {
+      pointer-events: auto; /* Make links clickable again */
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Slides iframe -->
+  <iframe src="https://docs.google.com/presentation/d/1JezY0krDciiUZjM9CTHf6mFYI3t2eGnWz-D5FsIMaQU/embed?start=false&loop=false&delayms=60000&slide=0&rm=minimal"
+          frameborder="0" 
+          allowfullscreen="true" 
+          mozallowfullscreen="true" 
+          webkitallowfullscreen="true" 
+          id="slide-iframe">
+  </iframe>
+
+  <!-- Overlay that blocks interactions except links -->
+  <div class="overlay"></div>
+
+  <script>
+    // Function to prevent specific keys from being pressed (for slide navigation)
+    function disableKeys(event) {
+      const forbiddenKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"];
+      if (forbiddenKeys.includes(event.key)) {
+        event.preventDefault();
+      }
+    }
+
+    // Add event listener to disable key presses that would navigate slides
+    window.addEventListener("keydown", disableKeys);
+  </script>
+</body>
+</html>
