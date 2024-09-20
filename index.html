@@ -10,7 +10,13 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Optional background for better visibility */
     }
+
+    /* Full-screen iframe */
     iframe {
       position: absolute;
       top: 0;
@@ -19,6 +25,7 @@
       height: 100%;
       border: none;
     }
+
     /* The overlay blocks all mouse interactions except on links */
     .overlay {
       position: absolute;
@@ -29,12 +36,43 @@
       pointer-events: none; /* Allow pointer events (e.g., clicks) to pass through */
       z-index: 10;
     }
+
     .overlay a {
       pointer-events: auto; /* Make links clickable again */
+    }
+
+    /* Style for the "Back to Start" button */
+    .back-btn {
+      position: absolute;
+      bottom: 3%; /* Adjust for better proportional placement */
+      right: 3%;
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: calc(1in * (100vw / 1440)) calc(1in * (100vw / 1440)); /* One inch padding based on viewport width */
+      font-size: calc(1rem * (100vw / 1440)); /* Font size scaling based on viewport width */
+      cursor: pointer;
+      z-index: 20;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    }
+
+    .back-btn:hover {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    /* Make button responsive to smaller screens */
+    @media (max-width: 600px) {
+      .back-btn {
+        padding: calc(0.8in * (100vw / 600)); /* Adjusted padding for smaller screens */
+        font-size: calc(0.9rem * (100vw / 600)); /* Adjusted font size for smaller screens */
+      }
     }
   </style>
 </head>
 <body>
+
   <!-- Google Slides iframe -->
   <iframe src="https://docs.google.com/presentation/d/1JezY0krDciiUZjM9CTHf6mFYI3t2eGnWz-D5FsIMaQU/embed?start=false&loop=false&delayms=60000&slide=0&rm=minimal"
           frameborder="0" 
@@ -47,6 +85,9 @@
   <!-- Overlay that blocks interactions except links -->
   <div class="overlay"></div>
 
+  <!-- "Back to Start" button -->
+  <button id="back-btn" class="back-btn">Back to Start</button>
+
   <script>
     // Function to prevent specific keys from being pressed (for slide navigation)
     function disableKeys(event) {
@@ -58,20 +99,18 @@
 
     // Add event listener to disable key presses that would navigate slides
     window.addEventListener("keydown", disableKeys);
+
+    // Function to go back to the first slide
+    function backToStart() {
+      const iframe = document.getElementById('slide-iframe');
+      const currentSrc = iframe.src;
+      const newSrc = currentSrc.replace(/slide=\d+/, 'slide=0'); // Replace current slide with the first one (slide=0)
+      iframe.src = newSrc;
+    }
+
+    // Attach event to "Back to Start" button
+    document.getElementById('back-btn').addEventListener('click', backToStart);
   </script>
-  <!-- Default Statcounter code for Homework https://argtime.github.io/Homework/
--->
-<script type="text/javascript">
-var sc_project=13038706; 
-var sc_invisible=1; 
-var sc_security="ac50d252"; 
-</script>
-<script type="text/javascript"
-src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript><div class="statcounter"><a title="Web Analytics"
-href="https://statcounter.com/" target="_blank"><img class="statcounter"
-src="https://c.statcounter.com/13038706/0/ac50d252/1/" alt="Web Analytics"
-referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-<!-- End of Statcounter Code -->
+
 </body>
 </html>
