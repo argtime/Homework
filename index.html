@@ -3,114 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homework</title>
+  <title>Site Discontinued</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #f0f0f0; /* Optional background for better visibility */
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      font-family: Arial, sans-serif;
+      color: #333;
     }
 
-    /* Full-screen iframe */
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
 
-    /* The overlay blocks all mouse interactions except on links */
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none; /* Allow pointer events (e.g., clicks) to pass through */
-      z-index: 10;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #007bff;
     }
 
-    .overlay a {
-      pointer-events: auto; /* Make links clickable again */
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
 
-    /* Style for the "Back to Start" button */
-    .back-btn {
-      position: absolute;
-      bottom: 3%; /* Adjust for better proportional placement */
-      right: 3%;
-      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: calc(1in * (100vw / 1440)) calc(1in * (100vw / 1440)); /* One inch padding based on viewport width */
-      font-size: calc(1rem * (100vw / 1440)); /* Font size scaling based on viewport width */
-      cursor: pointer;
-      z-index: 20;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    .link-button {
+      text-decoration: none;
+      color: #fff;
+      background-color: #007bff;
+      padding: 12px 24px;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
     }
 
-    .back-btn:hover {
-      background-color: rgba(0, 0, 0, 0.9);
-    }
-
-    /* Make button responsive to smaller screens */
-    @media (max-width: 600px) {
-      .back-btn {
-        padding: calc(0.8in * (100vw / 600)); /* Adjusted padding for smaller screens */
-        font-size: calc(0.9rem * (100vw / 600)); /* Adjusted font size for smaller screens */
-      }
+    .link-button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-
-  <!-- Google Slides iframe -->
-  <iframe src="https://docs.google.com/presentation/d/1JezY0krDciiUZjM9CTHf6mFYI3t2eGnWz-D5FsIMaQU/embed?start=false&loop=false&delayms=60000&slide=0&rm=minimal"
-          frameborder="0" 
-          allowfullscreen="true" 
-          mozallowfullscreen="true" 
-          webkitallowfullscreen="true" 
-          id="slide-iframe">
-  </iframe>
-
-  <!-- Overlay that blocks interactions except links -->
-  <div class="overlay"></div>
-
-  <!-- "Back to Start" button -->
-  <button id="back-btn" class="back-btn">Back to Start</button>
-
-  <script>
-    // Function to prevent specific keys from being pressed (for slide navigation)
-    function disableKeys(event) {
-      const forbiddenKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"];
-      if (forbiddenKeys.includes(event.key)) {
-        event.preventDefault();
-      }
-    }
-
-    // Add event listener to disable key presses that would navigate slides
-    window.addEventListener("keydown", disableKeys);
-
-    // Function to go back to the first slide
-    function backToStart() {
-      const iframe = document.getElementById('slide-iframe');
-      const currentSrc = iframe.src;
-      const newSrc = currentSrc.replace(/slide=\d+/, 'slide=0'); // Replace current slide with the first one (slide=0)
-      iframe.src = newSrc;
-    }
-
-    // Attach event to "Back to Start" button
-    document.getElementById('back-btn').addEventListener('click', backToStart);
-  </script>
+  <div class="container">
+    <h1>Website Discontinued</h1>
+    <p>This website has been discontinued. Use the link below to access the Google Slides:</p>
+    <a href="https://docs.google.com/presentation/d/1JezY0krDciiUZjM9CTHf6mFYI3t2eGnWz-D5FsIMaQU/edit?usp=sharing" class="link-button" target="_blank">View Google Slides</a>
+    <p style="margin-top: 20px;">- Ryan</p>
+  </div>
   <!-- Default Statcounter code for Homework https://argtime.github.io/Homework/
 -->
 <script type="text/javascript">
